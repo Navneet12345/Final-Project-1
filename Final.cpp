@@ -100,4 +100,91 @@ void amount::calculate()
 {
     gross=price+(price*(tax/100));
     netamt=qty*(gross-(gross*(dis/100)));
+}void amount::show()
+{
+    fin.open("itemstore.dat",ios::binary);
+    fin.read((char*)&amt,sizeof(amt));
+    item::show();
+    cout<<"\n\n\tNet amount: ";
+    cout<<netamt;
+    fin.close();
 }
+
+void amount::report()
+{
+    item::report();
+    gotoxy(23,k);
+    cout<<price;
+    gotoxy(33,k);
+    cout<<qty;
+    gotoxy(44,k);
+    cout<<tax;
+    gotoxy(52,k);
+    cout<<dis;
+    gotoxy(64,k);
+    cout<<netamt;
+    k=k+1;
+    if(k==50)
+    {
+        gotoxy(25,50);
+        cout<<"PRESS ANY KEY TO CONTINUE...";
+        getch();
+        k=7;
+        system("cls");
+        gotoxy(30,3);
+        cout<<" ITEM DETAILS ";
+        gotoxy(3,5);
+        cout<<"NUMBER";
+        gotoxy(13,5);
+        cout<<"NAME";
+        gotoxy(23,5);
+        cout<<"PRICE";
+        gotoxy(33,5);
+        cout<<"QUANTITY";
+        gotoxy(44,5);
+        cout<<"TAX";
+        gotoxy(52,5);
+        cout<<"DEDUCTION";
+        gotoxy(64,5);
+        cout<<"NET AMOUNT";
+    }
+}
+
+void amount::pay()
+{
+    show();
+    cout<<"\n\n\n\t\t*********************************************";
+    cout<<"\n\t\t                 DETAILS                  ";
+    cout<<"\n\t\t*********************************************";
+    cout<<"\n\n\t\tPRICE                     :"<<price;
+    cout<<"\n\n\t\tQUANTITY                  :"<<qty;
+    cout<<"\n\t\tTAX PERCENTAGE              :"<<tax;
+    cout<<"\n\t\tDISCOUNT PERCENTAGE         :"<<dis;
+    cout<<"\n\n\n\t\tNET AMOUNT              :Rs."<<netamt;
+    cout<<"\n\t\t*********************************************";
+}
+
+int main()
+{
+    cout.setf(ios::fixed);
+    cout.setf(ios::showpoint);
+    cout<<setprecision(2);
+    fstream tmp("temp.dat",ios::binary|ios::out);
+menu:
+    system("cls");
+    gotoxy(25,2);
+    cout<<"Super Market Billing ";
+    gotoxy(25,3);
+    cout<<"===========================\n\n";
+    cout<<"\n\t\t1.Bill Report\n\n";
+    cout<<"\t\t2.Add/Remove/Edit Item\n\n";
+    cout<<"\t\t3.Show Item Details\n\n";
+    cout<<"\t\t4.Exit\n\n";
+    cout<<"\t\tPlease Enter Required Option: ";
+    int ch,ff;
+    float gtotal;
+    cin>>ch;
+    switch(ch)
+        return(0);
+    {
+    
